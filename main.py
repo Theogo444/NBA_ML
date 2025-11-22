@@ -308,6 +308,10 @@ mae_val = mean_absolute_error(val['ratio_cap'], val_preds)
 print(f"MAE validation set : {mae_val:.4f}")
 r2 = r2_score(test['ratio_cap'], test_preds)
 print("R2 Test Lasso :", r2)
+n = test.shape[0]       # nombre de lignes (échantillons)
+p = test.shape[1]       # nombre de colonnes (features)
+r2_adj = 1 - (1 - r2) * (n - 1) / (n - p - 1)
+print("R² ajusté :", r2_adj)
 
 
 # In[ ]:
@@ -434,6 +438,10 @@ print("MAE Validation:", mean_absolute_error(val['ratio_cap'], val_preds_tree))
 print("MAE Test:", mean_absolute_error(test['ratio_cap'], test_preds_tree))
 r2 = r2_score(test['ratio_cap'], test_preds_tree)
 print("R2 Test Tree :", r2)
+n = test.shape[0]       # nombre de lignes (échantillons)
+p = test.shape[1]       # nombre de colonnes (features)
+r2_adj = 1 - (1 - r2) * (n - 1) / (n - p - 1)
+print("R² ajusté :", r2_adj)
 
 
 # On a un meilleur résultat pour le DecisionTreeRegressor. Une erreur moyenne absolue de 0,036 comparée aux 0,0391 et 0,0397 des deux modèles multi-linéaires. 
@@ -493,4 +501,8 @@ from sklearn.metrics import r2_score
 r2_test = r2_score(test['ratio_cap'], y_test_pred_svr)
 print("MAE test SVR :", mae_test)
 print("R2 test SVR  :", r2_test)
+n = test.shape[0]       # nombre de lignes (échantillons)
+p = test.shape[1]       # nombre de colonnes (features)
+r2_adj = 1 - (1 - r2_test) * (n - 1) / (n - p - 1)
+print("R² ajusté :", r2_adj)
 
