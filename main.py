@@ -143,6 +143,13 @@ print(f"On a {len(stats_all_df)} saisons de joueurs après nettoyage dans le dat
 full_df = stats_all_df.merge(sal_cap_df[["Player","SEASON_ID","ratio_cap"]], on=["Player","SEASON_ID"], how='inner')
 print(full_df.head(20))
 
+#On trace la distributuon de certaines statistiques pour en avoir une meilleure idée
+
+stats = ['PPG', 'APG', 'RPG', "ratio_cap"]
+for stat in stats:
+    sns.histplot(full_df[stat], kde=True, bins=30)
+    plt.title(f"Distribution de {stat}")
+    plt.show()
 
 # Etude statistique du df : statistiques descriptives et intervalle de confiance 95%
 
