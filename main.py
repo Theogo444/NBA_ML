@@ -506,3 +506,4 @@ p = test.shape[1]       # nombre de colonnes (features)
 r2_adj = 1 - (1 - r2_test) * (n - 1) / (n - p - 1)
 print("R² ajusté :", r2_adj)
 
+print("hello world")
